@@ -1,5 +1,8 @@
-package com.example.cardagger2example;
+package com.example.cardagger2example.dagger;
 
+
+import com.example.cardagger2example.MainActivity;
+import com.example.cardagger2example.car.Car;
 
 import dagger.Component;
 
@@ -24,13 +27,12 @@ import dagger.Component;
  * For this, it doesn't use any Java reflection like earlier dependency injection frameworks
  * (like Spring, Guice or Dagger 1).
  */
-@Component( modules = WheelsModule.class)
+@Component(modules = {WheelsModule.class, DieselEngineModule.class})
 public interface CarComponent {
 
     /**
      * We can get Car from module but since we have the Car class and can inject the constructor
      * that not necessary
-     * @return
      */
     Car getCar();
 

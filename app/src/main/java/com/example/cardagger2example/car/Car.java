@@ -1,4 +1,4 @@
-package com.example.cardagger2example;
+package com.example.cardagger2example.car;
 
 import android.util.Log;
 
@@ -17,9 +17,11 @@ public class Car {
      * Constructor injection
      * Inject: in order for dagger to know the way to instantiate the car class we have to mock our
      * constructor that suppose to use
-     *
-     * @param wheels
-     * @param engine
+     * <p>
+     * [Update] we change Engine to interface rather than Class so @Inject constructor doesn't work
+     * to solve that create classes that implement the interface and @Inject their constructors
+     * there will be another problem that dagger will not know which class to instantiate so
+     * we will make a module for class we wanted
      */
     @Inject
     public Car(Wheels wheels, Engine engine) {
@@ -28,6 +30,7 @@ public class Car {
     }
 
     public void drive() {
+        engine.start();
         Log.d(TAG, "driving.. : " + this);
     }
 
