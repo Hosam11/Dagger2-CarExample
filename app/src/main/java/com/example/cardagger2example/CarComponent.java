@@ -24,9 +24,14 @@ import dagger.Component;
  * For this, it doesn't use any Java reflection like earlier dependency injection frameworks
  * (like Spring, Guice or Dagger 1).
  */
-@Component
+@Component( modules = WheelsModule.class)
 public interface CarComponent {
 
+    /**
+     * We can get Car from module but since we have the Car class and can inject the constructor
+     * that not necessary
+     * @return
+     */
     Car getCar();
 
     void inject(MainActivity mainActivity);

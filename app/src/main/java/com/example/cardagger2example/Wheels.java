@@ -1,10 +1,16 @@
 package com.example.cardagger2example;
 
-import javax.inject.Inject;
 
+/**
+ * assume that we don't own this class it's come from third party so we can't annotate it with @Inject
+ */
 public class Wheels {
 
-    @Inject
-    public Wheels() {
+    Rims rims;
+    Tires tires;
+
+    public Wheels(Rims rims, Tires tires) {
+        this.rims = rims;
+        this.tires = tires;
     }
 }
