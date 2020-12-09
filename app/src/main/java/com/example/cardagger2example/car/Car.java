@@ -18,8 +18,9 @@ public class Car {
      * Inject: in order for dagger to know the way to instantiate the car class we have to mock our
      * constructor that suppose to use
      * <p>
-     * [Update] we change Engine to interface rather than Class so @Inject constructor doesn't work
-     * to solve that create classes that implement the interface and @Inject their constructors
+     * [Update]
+     * - We change Engine to interface rather than Class so @Inject constructor doesn't work
+     * - To solve that create classes that implement the interface and @Inject their constructors
      * there will be another problem that dagger will not know which class to instantiate so
      * we will make a module for class we wanted
      */
