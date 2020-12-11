@@ -10,6 +10,9 @@ import dagger.Module;
 /**
  * we can't use normal provides method because it's need instance of module but dagger never create
  * instance of it  but we can use static provides method
+ *
+ * we accomplish runtime inject as we did before with DieselEngine um another way so we should
+ * use bindInstance over module constructor argument whenever possible
  */
 @Module
 public abstract class PetrolEngineModule {

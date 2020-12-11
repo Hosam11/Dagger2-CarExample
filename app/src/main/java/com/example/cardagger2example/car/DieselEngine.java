@@ -2,6 +2,8 @@ package com.example.cardagger2example.car;
 
 import android.util.Log;
 
+import javax.inject.Inject;
+
 public class  DieselEngine implements Engine {
     private static final String TAG = "Car";
 
@@ -18,6 +20,7 @@ public class  DieselEngine implements Engine {
      * because we have to call the constructor and pass horsePower value
      */
     // [Updated] @Inject
+    @Inject
     public DieselEngine(int horsePower) {
         this.horsePower = horsePower;
     }
