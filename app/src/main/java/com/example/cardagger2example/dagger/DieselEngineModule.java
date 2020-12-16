@@ -33,11 +33,12 @@ public class DieselEngineModule {
      * [Don't] provideEngine(int horsePower)
      * Since we instantiate horsePower we don't have to pass it as  argument to this method
      * We also create provides method for horsePower if will use in other places as well like AppContext
-     */
-    /*@Provides
+     *
+    @Provides
     Engine provideEngine(){
         return new DieselEngine(horsePower);
-    }*/
+    }
+    */
 
     /**
      * [Update ## part8 ##] instead of use the horsePower directly we can create a Provides methods

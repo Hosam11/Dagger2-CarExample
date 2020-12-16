@@ -29,7 +29,7 @@ public abstract class PetrolEngineModule {
      * and they are more efficient because Dagger doesn't have to invoke them or even instantiate
      * their containing module. it's instantiate {@param petrolEngine} directly
      *
-     * whenever you just bind an implementation tp interface for example we need an engine an petrol
+     * whenever you just bind an implementation to interface for example we need an engine an petrol
      * engine then we should use binds instead of provides
      */
     @Binds

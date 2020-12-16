@@ -27,6 +27,7 @@ import dagger.Provides;
 @Module
 public abstract class WheelsModule {
 
+
     @Provides
     static Rims provideRims() {
         return new Rims();
@@ -47,8 +48,6 @@ public abstract class WheelsModule {
     static Wheels provideWheels(Rims rims, Tires tires) {
         return new Wheels(rims, tires);
     }
-
-
 
 
 }

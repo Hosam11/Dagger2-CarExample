@@ -3,11 +3,10 @@ package com.example.cardagger2example.dagger;
 
 import com.example.cardagger2example.MainActivity;
 import com.example.cardagger2example.car.Car;
-import com.example.cardagger2example.car.PetrolEngine;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
-import dagger.Binds;
 import dagger.BindsInstance;
 import dagger.Component;
 
@@ -31,9 +30,17 @@ import dagger.Component;
  * dependencies in the correct order.
  * For this, it doesn't use any Java reflection like earlier dependency injection frameworks
  * (like Spring, Guice or Dagger 1).
+ * <p>
+ * if there is any dependency in this component use singleton so we have to annotate this interface
+ * singleton
+ * dependencies: tell dagger whenever we create an ActivityComponent it need an AppComponent to
+ * work because it's where you get Driver from and the way we get this AppComponent to
+ * ActivityComponent via setter method that generate automatically
  */
-@Component(modules = {WheelsModule.class, PetrolEngineModule.class})
-public interface CarComponent {
+//@Singleton
+@PerActivity
+@Component(dependencies = AppComponent.class, modules = {WheelsModule.class, PetrolEngineModule.class})
+public interface ActivityComponent {
 
     /**
      * //[Old Code#1#] //
@@ -53,22 +60,24 @@ public interface CarComponent {
 
         // we don't need body for that method dagger will implement automatically just have to
         // declare it because we have overriding the builder definition
-        CarComponent build();
+        ActivityComponent build();
 
         /**
          * With @BindsInstance we can get variable to our dependency graph at runtime which has the
          * same effect  as pass a value at runtime to the module and then provides it over provides
          * method but it's more efficient because dagger don't need to create instance of the
-         *
+         * <p>
          * So we can turn the {@link  DieselEngineModule} back to abstract module tha contain a
          * binds method as we added before  and remove all of hoursPower part but we leave it at is
          * it so we can return to code later and review it
-         *
          */
         @BindsInstance
         MyBuilder horsePower(@Named("horsePower") int horsePower);
 
         @BindsInstance
         MyBuilder engineCapacity(@Named("engineCapacity") int engineCapacity);
+
+        // declare setter method for AppComponent
+        MyBuilder appComponent(AppComponent appComponent);
     }
 }

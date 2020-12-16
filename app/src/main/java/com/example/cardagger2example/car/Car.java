@@ -2,16 +2,31 @@ package com.example.cardagger2example.car;
 
 import android.util.Log;
 
+import com.example.cardagger2example.dagger.PerActivity;
+
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * [order of injection] = Constructor > Filed > Method
  */
 
+/**
+ * @PerActivty this will work exactly as singleton application it tell dagger to create only single
+ * instance of a car within the same component there is nothing special about singleton all the
+ * scope annotation work the same so if you want use this for AppComponent dagger will still create
+ * application singleton it doesn't know what PerActivity means it's doesn't know that it suppose
+ * to get rid of this car when activity is destroy we are responsible of realizing the new scope
+ * and the way we do this by create a second component which is only lives as long as activity
+ * while the component that we declared in our application class lives as long as application
+ */
+@PerActivity
+//@Singleton
 public class Car {
     private static final String TAG = "Car";
     private final Wheels wheels;
     private final Engine engine;
+    private final Driver driver;
 
     /**
      * Constructor injection
@@ -25,14 +40,15 @@ public class Car {
      * we will make a module for class we wanted
      */
     @Inject
-    public Car(Wheels wheels, Engine engine) {
+    public Car(Driver driver, Wheels wheels, Engine engine) {
         this.wheels = wheels;
         this.engine = engine;
+        this.driver = driver;
     }
 
     public void drive() {
         engine.start();
-        Log.d(TAG, "driving.. : " + this);
+        Log.d(TAG, driver + " drives : " + this);
     }
 
     /**
