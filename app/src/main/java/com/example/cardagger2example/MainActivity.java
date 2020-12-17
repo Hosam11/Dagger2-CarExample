@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cardagger2example.car.Car;
 import com.example.cardagger2example.dagger.ActivityComponent;
-import com.example.cardagger2example.dagger.DaggerActivityComponent;
+import com.example.cardagger2example.dagger.AppComponent;
+import com.example.cardagger2example.dagger.DieselEngineModule;
 
 import javax.inject.Inject;
 
@@ -70,14 +71,19 @@ public class MainActivity extends AppCompatActivity {
 
         /* now we have an ActivityComponent that contain an AppComponent internally where it's get
         our driver from.
-        */
+        AppComponent appComponent = ((CarExampleApp) getApplication()).getCarComponent();
         ActivityComponent component = DaggerActivityComponent.builder()
                 .horsePower(100)
                 .engineCapacity(150)
                 // we have to pass an AppComponent because we define that out Activity component
                 // depends on AppComponent to work
-                .appComponent(((CarExampleApp) getApplication()).getCarComponent())
+                .appComponent(appComponent)
                 .build();
+        */
+        AppComponent appComponent = ((CarExampleApp) getApplication()).getCarComponent();
+        // we don't have to call build because this method return the finished component
+        ActivityComponent component = appComponent
+                .getActivityComponent(new DieselEngineModule(100));
 
         //[Old Code#1#] car = carComponent.getCar();
         // take mainActivity and inject the member variable car

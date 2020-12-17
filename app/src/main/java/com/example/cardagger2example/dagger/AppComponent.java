@@ -29,5 +29,10 @@ import dagger.Component;
 @Component(modules = DriverModule.class)
 public interface AppComponent {
 
-    Driver getDriver();
+    // Driver getDriver();
+
+    /* Factory method
+    DieselEngineModule takes horsePower as an constructor argument and we have to pass it at runtime
+    */
+    ActivityComponent getActivityComponent(DieselEngineModule dieselEngineModule);
 }

@@ -20,8 +20,8 @@ import javax.inject.Singleton;
  * and the way we do this by create a second component which is only lives as long as activity
  * while the component that we declared in our application class lives as long as application
  */
-@PerActivity
 //@Singleton
+@PerActivity
 public class Car {
     private static final String TAG = "Car";
     private final Wheels wheels;
