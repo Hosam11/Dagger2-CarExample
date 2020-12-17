@@ -59,13 +59,14 @@ public interface ActivityComponent {
      * define api for CarComponent by ourselves so we can call different method on
      * DaggerComponent.Builder() and we have to add build method that return CarComponent
      */
+    /*
     @Subcomponent.Builder
     interface MyBuilder {
         // we don't need body for that method dagger will implement automatically just have to
         // declare it because we have overriding the builder definition
         ActivityComponent build();
 
-        /**
+        *//**
          * @BindsInstance we can get variable to our dependency graph at runtime which has the
          * same effect  as pass a value at runtime to the module and then provides it over provides
          * method but it's more efficient because dagger don't need to create instance of the
@@ -73,17 +74,27 @@ public interface ActivityComponent {
          * So we can turn the {@link  DieselEngineModule} back to abstract module tha contain a
          * binds method as we added before  and remove all of hoursPower part but we leave it at is
          * it so we can return to code later and review it
-         */
+         *//*
         @BindsInstance
         MyBuilder horsePower(@Named("horsePower") int horsePower);
 
         @BindsInstance
         MyBuilder engineCapacity(@Named("engineCapacity") int engineCapacity);
 
-        /**
+        *//**
          *  declare setter method for AppComponent
          *  [updated] this only necessary for component dependency
-         */
+         *//*
         //MyBuilder appComponent(AppComponent appComponent);
+    }
+    */
+
+    /**
+     * we can't have a Builder and Factory in the same component
+     */
+    @Subcomponent.Factory
+    interface MyFactory {
+        ActivityComponent create(@BindsInstance @Named("horsePower") int horsePower,
+                                 @BindsInstance @Named("engineCapacity") int engineCapacity);
     }
 }

@@ -5,7 +5,6 @@ import android.util.Log;
 import com.example.cardagger2example.dagger.PerActivity;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * [order of injection] = Constructor > Filed > Method
@@ -48,7 +47,7 @@ public class Car {
 
     public void drive() {
         engine.start();
-        Log.d(TAG, driver + " drives : " + this);
+        Log.d(TAG, driver + " " + driver.name + " drives : " + this);
     }
 
     /**

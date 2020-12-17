@@ -82,12 +82,23 @@ public class MainActivity extends AppCompatActivity {
         */
         AppComponent appComponent = ((CarExampleApp) getApplication()).getCarComponent();
         // we don't have to call build because this method return the finished component
-        ActivityComponent component = appComponent
+        /*ActivityComponent component = appComponent
                 // .getActivityComponent(new DieselEngineModule(100));
                 .getActivityComponentBuilder()
                 .horsePower(100)
                 .engineCapacity(150)
-                .build();
+                .build();*/
+
+        /*
+         benefits of Factory that we have compile time error because in our builder before we can
+         forget to call one of builder methods and that not be dedicated at compile time instead we
+         get a runtime exception if one of them is missing but in Factory that won't happened
+
+         but in other situation there builder is needed for example it you want to make it optional
+         to pass an instance of a module or let dagger instantiate
+         */
+        ActivityComponent component = appComponent.getActivityComponentFactory()
+                .create(100,150);
 
         //[Old Code#1#] car = carComponent.getCar();
         // take mainActivity and inject the member variable car

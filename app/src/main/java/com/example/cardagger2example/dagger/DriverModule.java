@@ -4,7 +4,6 @@ import com.example.cardagger2example.car.Driver;
 
 import javax.inject.Singleton;
 
-import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -14,10 +13,14 @@ import dagger.Provides;
  * at runtime
  */
 @Module
-public abstract class DriverModule {
+public  class DriverModule {
 
+    private String driverName;
 
-   /* DOESN'T work that creates error: [Dagger/DependencyCycle] Found a dependency cycle:
+    public DriverModule(String driverName) {
+        this.driverName = driverName;
+    }
+    /* DOESN'T work that creates error: [Dagger/DependencyCycle] Found a dependency cycle:
     @Binds
     abstract Driver bindDriver(@Singleton Driver driver);
     */
@@ -25,7 +28,7 @@ public abstract class DriverModule {
     @Provides
     // @PerActivity
     @Singleton
-    static Driver providesDriver() {
-        return new Driver();
+     Driver providesDriver() {
+        return new Driver(driverName);
     }
 }

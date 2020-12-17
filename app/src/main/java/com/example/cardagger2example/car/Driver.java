@@ -1,12 +1,11 @@
 package com.example.cardagger2example.car;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
  * If a class doesn't get from constructor then you should annotate the @Provides method that return
  * the class with @Singleton
- *
+ * <p>
  * This annotation only work with in the same component as soon as we create another instance form
  * component it's get another value
  */
@@ -20,4 +19,10 @@ public class Driver {
     /*@Inject
     public Driver() {
     }*/
+
+    String name;
+
+    public Driver(String name) {
+        this.name = name;
+    }
 }

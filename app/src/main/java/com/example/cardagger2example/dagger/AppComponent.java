@@ -41,5 +41,16 @@ public interface AppComponent {
     DieselEngineModule takes horsePower as an constructor argument and we have to pass it at runtime
     */
     //ActivityComponent getActivityComponent(DieselEngineModule dieselEngineModule);
-    ActivityComponent.MyBuilder getActivityComponentBuilder();
+
+    ActivityComponent.MyFactory getActivityComponentFactory();
+
+    @Component.Factory
+    interface MyFactory {
+        // if AppComponent have a component dependency then we should pass it as argument
+        AppComponent create(DriverModule driverModule);
+    }
+
 }
+
+
+
