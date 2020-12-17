@@ -23,6 +23,12 @@ import dagger.Component;
  * <p>
  * Our AppComponent contains the DriverModule so it's responsible for provides a driver and our
  * ActivityComponent contains EngineModule and WheelsModule
+ * <p>
+ * The SubComponent {@link ActivityComponent} can access whole object graph of it's parent right now
+ * it's only the {@link Driver} from DriverModule but if you need more object from
+ * {@link AppComponent} ActivityComponent can access to all of them where is the component that
+ * depends on component vi component decadency can only access object that parent component exposes
+ * explicitly like getDriver() method in AppComponent
  */
 
 @Singleton
@@ -34,5 +40,6 @@ public interface AppComponent {
     /* Factory method
     DieselEngineModule takes horsePower as an constructor argument and we have to pass it at runtime
     */
-    ActivityComponent getActivityComponent(DieselEngineModule dieselEngineModule);
+    //ActivityComponent getActivityComponent(DieselEngineModule dieselEngineModule);
+    ActivityComponent.MyBuilder getActivityComponentBuilder();
 }
